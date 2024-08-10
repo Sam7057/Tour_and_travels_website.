@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="registerCss.css">
+</head>
+<body>
+    
+
+<!-- This is register box/form -->
+  <div class="main">
+    <span class="icon-close"><a href="index.html"><ion-icon name="close-outline"></ion-icon></a></span>
+    <div class="form-box-login">
+        <h2>LOGIN</h2>
+        <form action="" method="">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" name="email" required>
+                <label>EMAIL</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" name="password"required>
+                <label>PASSWORD</label>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox" checked>Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn" name="submit">LOGIN</button>
+            <div class="login-register">
+                <p>Don't have an account? <a class="register-link"> Register</a></p>
+            </div>
+        </form>
+    </div>
+
+<!-- This is register box/form -->
+    <div class="form-box-register">
+        <h2>REGISTRATION</h2>
+        <form action="#" id="RegistrationForm">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="person"></ion-icon></span>
+                <input type="text" name="Fullname" id="Fullname" required>
+                <label>FULL NAME <span class="error"></span></label>
+                
+            </div>
+
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="person"></ion-icon></span>
+                <label>GENDER <span class="error" ></span></label>
+                
+                <br>
+                <select class="gender-option-box" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
+                </select>
+                
+            
+            </div>
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="call"></ion-icon></span>
+                <input type="text" name="number" id="cnumber" required>
+                <label>CONTACT NUMBER <span class="error" ></span></label>
+                
+            </div>
+
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" name="email" id="email" required>
+                <label>EMAIL <span class="error" ></span></label>
+                
+            </div>
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="Enter-password" name="password" id="password" required>
+                <label>ENTER PASSWORD <span class="error" ></span></label>
+                
+            </div>
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="confirm-password" name="confirm-password" id="confirmpassword" required>
+                <label>CONFIRM PASSWORD <span class="error" ></span></label>
+                
+            </div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox">I agree to the terms & conditions</label>
+            </div>
+
+            <button type="submit" class="btn">REGISTER</button>
+
+            <div class="login-register">
+                <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<!-- register page ends -->
+
+<script src="RegisterScript.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { igetDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+    import { getAuth, SignInWithEmailandPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyD5ro4k1MS2szt1QDKNMWEcJyQU2Voa_U4",
+      authDomain: "tours-travels-90974.firebaseapp.com",
+      databaseURL: "https://tours-travels-90974-default-rtdb.firebaseio.com",
+      projectId: "tours-travels-90974",
+      storageBucket: "tours-travels-90974.appspot.com",
+      messagingSenderId: "728633440209",
+      appId: "1:728633440209:web:afa873b65c5f264537d2f0"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+    const auth = getAuth(app);
+    const dbref = ref(db);
+
+    
+    let EmailInp = document.getElementById('email');
+    let Password = document.getElementById('password');
+    let ConfirmPassword = document.getElementById('confirmpassword');
+    let RegisterForm = document.getElementById('RegistrationForm');
+
+    let SignInUser = evt =>{
+        evt.preventDefault();
+
+        SignInWithEmailandPassword(auth, EmailInp.value, Password.value)
+        .then((credentials)=>{
+            console.log(credentials);
+        })
+        .catch((error)=>{
+            alert(error.message);
+            console.log(error.code);
+            console.log(error.message);
+        })
+    }
+  </script>
+  </script>
+  
+</body>  
+</html>
